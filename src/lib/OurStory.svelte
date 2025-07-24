@@ -111,21 +111,23 @@
 	.foto,
 	p {
 		transform: translateY(100%);
-		opacity: 0.5;
-		animation: slide linear forwards;
+		opacity: 0;
+		animation: slide ease-out forwards;
 		animation-timeline: view();
-		animation-range: 50px 300px;
+		animation-range: 100px 600px;
 	}
 
 	.sub-title {
-		animation: fade-in 1s forwards;
+		animation: fade-in forwards;
 		animation-timeline: view();
+    animation-range: 100px 300px cover;
 	}
 
 	@keyframes fade-in {
 		from {
+      transform: translateY(px);
 			opacity: 0.7;
-			scale: 0;
+			scale: 0.6;
 		}
 		to {
 			opacity: 1;

@@ -22,7 +22,7 @@
 			{
 				root: null,
 				rootMargin: '0px',
-				threshold: 0.3
+				threshold: 0
 			}
 		);
 
@@ -98,7 +98,7 @@
 
 	.wedding-banner::before {
 		content: '';
-		background: url('/images/bg-bangau.webp') no-repeat center/cover;
+		background: url('/images/taman.jpg') no-repeat center/cover;
 		animation: inset 5s ease forwards;
 		position: absolute;
 		left: 0;
@@ -157,7 +157,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		padding-top: 120px;
+		padding-top: 80px;
 		padding-bottom: 120px;
 		clip-path: polygon(50% 0%, 100.2% 5%, 100.2% 100.3%, 0% 100.3%, 0% 5%);
 		position: relative;
@@ -216,10 +216,10 @@
 		border-top-right-radius: 100% 180px;
 		position: relative;
 		z-index: 3;
-		transform: translateY(20%);
-		transform: scale(0.7);
-		opacity: 0.5;
-		transition: all 0.5s ease-in-out;
+		transform: translateY(30%);
+		transform: scale(0.8);
+		opacity: 0;
+		transition: all 2s ease-out;
 	}
 
 	.info-card.up {

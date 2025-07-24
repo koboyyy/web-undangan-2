@@ -1,3 +1,20 @@
+<script>
+  const bankBRI = "32482444";
+  const bankBCA = "32545435";
+  const addres = "Jl. perjuangan"
+  const text = "";
+
+
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("teks di salin");
+    } catch (err) {
+      console.error("Gagal menyalin: ", err);
+    }
+  }
+</script>
+
 <section>
 	<div class="container">
 		<div class="wedding-gift">
@@ -15,19 +32,19 @@
 				<p>No. Rekening</p>
 				<span>93247032494</span>
 				<span>an. dfjefe</span>
-				<button><i class="fa-solid fa-copy"></i> Salin</button>
+				<button on:click={() => copyToClipboard(bankBRI)}><i class="fa-solid fa-copy"></i> Salin</button>
 			</div>
 			<div class="via-2">
 				<img src="/images/logo-bca-putih-300x93.png" alt="" />
 				<p>No. Rekening</p>
 				<span>93247032494</span>
 				<span>an. dfjefe</span>
-				<button><i class="fa-solid fa-copy"></i> Salin</button>
+				<button on:click={() => copyToClipboard(bankBCA)}><i class="fa-solid fa-copy"></i> Salin</button>
 			</div>
 			<div class="via-3">
 				<div>KADO FISIK</div>
 				<p>Kirim kado fisik ke alamat kami:</p>
-				<button><i class="fa-solid fa-copy"></i> Salin Alamat</button>
+				<button on:click={() => copyToClipboard(addres)}><i class="fa-solid fa-copy"></i> Salin Alamat</button>
 			</div>
 		</div>
 	</div>
@@ -145,9 +162,10 @@
 		font-size: 10px;
 		cursor: pointer;
 		transition: all 0.5s ease;
+    color: white;
 	}
 
 	button:hover {
-		filter: brightness(0.7);
+		filter: brightness(0.5);
 	}
 </style>

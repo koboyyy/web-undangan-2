@@ -6,7 +6,7 @@
 	export let openInvitation;
 
 	// Variabel untuk nama tamu, bisa diubah sesuai kebutuhan atau dijadikan prop.
-	let guestName = 'Adhan dan Partner';
+	let guestName = 'Guest';
 </script>
 
 <section in:fade={{ duration: 1000 }} class="invitation-cover">
@@ -14,7 +14,7 @@
 		<div class="content-wrapper">
 			<div class="header-section">
 				<h2 class="pre-title">THE WEDDING OF</h2>
-				<h1 class="main-title">Dhea & Dedi</h1>
+				<h1 class="main-title">Username</h1>
 			</div>
 
 			<div class="guest-info-section">

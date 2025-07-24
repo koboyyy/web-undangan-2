@@ -1,10 +1,39 @@
 <script>
 	import { onMount } from 'svelte';
+	import Swiper from 'swiper';
+	import { Autoplay } from 'swiper/modules';
+	import 'swiper/css';
+	import 'swiper/css/autoplay';
 
 	let isVisible1 = false;
 	let isVisible2 = false;
 
 	onMount(() => {
+		// Initialize Swiper sliders
+		new Swiper('.swiper-left', {
+			modules: [Autoplay],
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+			},
+			loop: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+		});
+
+		new Swiper('.swiper-right', {
+			modules: [Autoplay],
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+				reverseDirection: true,
+			},
+			loop: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+		});
+
+		// Intersection Observer for info sections
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -25,39 +54,63 @@
 
 		observer.observe(document.getElementById('info1'));
 		observer.observe(document.getElementById('info2'));
+
+		return () => {
+			observer.disconnect();
+		};
 	});
 </script>
 
 <section class="foto-section">
 	<div class="container">
 		<div class="frame frame-left">
-			<div class="wrapper">
-				<img src="/images/foto1.webp" alt="" />
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto4.webp" alt="" />
+			<div class="swiper swiper-left">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="/images/foto1.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto2.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto3.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto4.webp" alt="" />
+					</div>
+				</div>
 			</div>
 			<div class="frame-inset"></div>
 			<div class="info-wrapper left">
 				<div id="info1" class="info" class:slide-in={isVisible1}>
-					<h1>Dia Santika, S.Pd</h1>
-					<p>Putri dari Bapak Sopiyan dan Ibu Solihatun</p>
+					<h1>Name</h1>
+					<p>Putri dari Bapak ... dan ibu ...</p>
 				</div>
 			</div>
 		</div>
 
 		<div class="frame frame-right">
-			<div class="wrapper">
-				<img src="/images/foto4.webp" alt="" />
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto1.webp" alt="" />
+			<div class="swiper swiper-right">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="/images/foto4.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto2.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto3.webp" alt="" />
+					</div>
+					<div class="swiper-slide">
+						<img src="/images/foto1.webp" alt="" />
+					</div>
+				</div>
 			</div>
 			<div class="frame-inset"></div>
 			<div class="info-wrapper right">
 				<div id="info2" class="info" class:slide-in={isVisible2}>
-					<h1>M. Taufik Akbar. S,T</h1>
-					<p>Putra dari Bapat Arizal dan ibu Rahmalina</p>
+					<h1>Name</h1>
+					<p>Putra dari Bapak ... dan ibu ...</p>
 				</div>
 			</div>
 		</div>
@@ -65,55 +118,6 @@
 </section>
 
 <style>
-	.wrapper {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		overflow: hidden;
-	}
-
-	.wrapper img {
-		flex-shrink: 0;
-		width: 100%;
-		height: 100%;
-		object-position: center;
-		object-fit: cover;
-	}
-
-	.frame-left .wrapper img {
-		animation: slide 30s infinite;
-	}
-
-	.frame-right .wrapper img {
-		animation: slide 30s 2s infinite;
-	}
-
-	@keyframes slide {
-		0%,
-		15% {
-			transform: translateX(0);
-		}
-		20%,
-		35% {
-			transform: translateX(-100%);
-		}
-		40%,
-		55% {
-			transform: translateX(-200%);
-		}
-		60%,
-		75% {
-			transform: translateX(-300%);
-		}
-		80%,
-		95% {
-			transform: translateX(-200%);
-		}
-		100% {
-			transform: translateX(0);
-		}
-	}
-
 	.foto-section {
 		display: flex;
 		justify-content: center;
@@ -148,9 +152,6 @@
 		background-size: cover;
 		background-position: center;
 		z-index: 1;
-		transition:
-			background-image 1s ease,
-			opacity 1s ease;
 	}
 
 	.frame-right {
@@ -165,6 +166,7 @@
 		bottom: 33%;
 		writing-mode: sideways-lr;
 		font-family: 'Creattion', sans-serif;
+		z-index: 3;
 	}
 
 	.frame-left::after {
@@ -183,12 +185,14 @@
 		width: 90%;
 		height: 90%;
 		transform: translate(-50%, -50%);
+		z-index: 2;
 	}
 
 	.info-wrapper {
 		position: absolute;
 		top: 280px;
 		height: 135px;
+		z-index: 3;
 	}
 
 	.info-wrapper.left {
@@ -244,5 +248,18 @@
 
 	.slide-in {
 		opacity: 1;
+	}
+
+	.swiper {
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+
+	.swiper-slide img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
 	}
 </style>

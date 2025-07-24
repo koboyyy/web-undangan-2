@@ -44,7 +44,7 @@
 	{/if}
 
 	<!-- Audio -->
-	<audio id="lagu" src="/lagu/instrumen_melayu.mp3"></audio>
+	<audio id="lagu" src="/lagu/nothing_gona.mp3"></audio>
 </main>
 
 <style>

@@ -4,16 +4,16 @@
 		<div class="frame-1">
 			<h1 class="title">Our Gallery</h1>
 			<div class="foto-wrapper">
-				<img src="/images/foto4.webp" alt="" />
-				<img src="/images/foto1.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto2.webp" alt="" />
+				<img src="/images/foto4.webp" alt="" loading="lazy"/>
+				<img src="/images/foto1.webp" alt="" loading="lazy"/>
+				<img src="/images/foto3.webp" alt="" loading="lazy"/>
+				<img src="/images/foto2.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper">
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto4.webp" alt="" />
-				<img src="/images/foto1.webp" alt="" />
+				<img src="/images/foto2.webp" alt="" loading="lazy"/>
+				<img src="/images/foto3.webp" alt="" loading="lazy"/>
+				<img src="/images/foto4.webp" alt="" loading="lazy"/>
+				<img src="/images/foto1.webp" alt="" loading="lazy"/>
 			</div>
 			<p>"Every Love Story Is Beautiful, But Ours Is My Favorite"</p>
 		</div>
@@ -21,22 +21,22 @@
 		<!-- Frame Kanan -->
 		<div class="frame-2">
 			<div class="foto-wrapper left">
-				<img src="/images/foto1.webp" alt="" />
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto4.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
+				<img src="/images/foto1.webp" alt="" loading="lazy"/>
+				<img src="/images/foto2.webp" alt="" loading="lazy"/>
+				<img src="/images/foto4.webp" alt="" loading="lazy"/>
+				<img src="/images/foto3.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper left">
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto1.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto4.webp" alt="" />
+				<img src="/images/foto2.webp" alt="" loading="lazy"/>
+        <img src="/images/foto1.webp" alt="" loading="lazy"/>
+				<img src="/images/foto3.webp" alt="" loading="lazy"/>
+				<img src="/images/foto4.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper left">
-				<img src="/images/foto1.webp" alt="" />
-				<img src="/images/foto3.webp" alt="" />
-				<img src="/images/foto2.webp" alt="" />
-				<img src="/images/foto4.webp" alt="" />
+				<img src="/images/foto1.webp" alt="" loading="lazy"/>
+				<img src="/images/foto3.webp" alt="" loading="lazy"/>
+				<img src="/images/foto2.webp" alt="" loading="lazy"/>
+				<img src="/images/foto4.webp" alt="" loading="lazy"/>
 			</div>
 		</div>
 	</div>
