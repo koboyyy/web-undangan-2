@@ -1,41 +1,48 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import Chat from './Chat.svelte';
 	import NextComment from './NextComment.svelte';
+	import { supabase } from './supabaseClient';
 
-	export let responseMessage = '';
 	export let comments = [];
+	export let responseMessage = '';
 
 	let name = '';
 	let message = '';
+	let isSubmitted = false;
 
 	const dispatch = createEventDispatcher();
 
-	// Urutkan comments dari yang terbaru
-	$: sortedComments = [...comments].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+	$: sortedComments = comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
 	async function handleSubmit() {
+		if (!name.trim() || !message.trim()) return;
+
 		try {
-			const response = await fetch('http://localhost:3000/kirim', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ name, message })
-			});
+			const { error } = await supabase
+				.from('wishes')
+				.insert([{ name, message }]);
 
-			const result = await response.json();
-			responseMessage = result.message;
-
-			if (response.ok) {
-				// Tambahkan komentar baru ke comments
-				comments = [...comments, { name, message, created_at: new Date().toISOString() }];
+			if (error) {
+				responseMessage = 'Error saat mengirim ucapan: ' + error.message;
+			} else {
+				responseMessage = 'Ucapan berhasil dikirim!';
+				isSubmitted = true;
 				name = '';
 				message = '';
-				dispatch('submit', { message: result.message });
+				const { data } = await supabase
+					.from('wishes')
+					.select('*')
+					.order('created_at', { ascending: false });
+				comments = data;
+				dispatch('submit', { message: responseMessage });
+
+				setTimeout(() => {
+					isSubmitted = false;
+					responseMessage = '';
+				}, 3000);
 			}
 		} catch (error) {
-			responseMessage = 'Error saat mengirim formulir: ' + error.message;
+			responseMessage = 'Error saat mengirim ucapan: ' + error.message;
 			dispatch('submit', { message: responseMessage });
 		}
 	}
@@ -49,20 +56,23 @@
 
 	<div class="wishes">
 		<div class="container">
-			<form on:submit|preventDefault={handleSubmit}>
-				<div class="form-group">
-					<label for="name">Nama:</label>
-					<input type="text" id="name" bind:value={name} required />
-				</div>
-				<div class="form-group">
-					<label for="message">Pesan:</label>
-					<textarea id="message" bind:value={message} required></textarea>
-				</div>
-				<button type="submit">Kirim</button>
-			</form>
+			{#if isSubmitted}
+				<p class="response">Ucapan telah terkirim! Terima kasih.</p>
+			{:else}
+				<form on:submit|preventDefault={handleSubmit}>
+					<div class="form-group">
+						<label for="name">Nama:</label>
+						<input type="text" id="name" bind:value={name} required />
+					</div>
+					<div class="form-group">
+						<label for="message">Pesan:</label>
+						<textarea id="message" bind:value={message} required></textarea>
+					</div>
+					<button type="submit">Kirim</button>
+				</form>
+			{/if}
+			<NextComment {comments}></NextComment>
 		</div>
-
-		<NextComment comments={sortedComments}></NextComment>
 	</div>
 </div>
 
@@ -129,5 +139,12 @@
 		cursor: pointer;
 		border-radius: 2px;
 		color: white;
+	}
+
+	.response {
+		color: #3b5998;
+		font-size: 14px;
+		text-align: center;
+		padding: 15px;
 	}
 </style>

@@ -1,5 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import { supabase } from './supabaseClient';
 
 	export let responseMessage = '';
 
@@ -35,27 +36,25 @@
 		if (!validateForm()) return;
 
 		try {
-			const response = await fetch('http://localhost:3000/kehadiran', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ name: nameKehadiran, address, kehadiran })
-			});
+			const { error } = await supabase
+				.from('rsvp')
+				.insert([{ name: nameKehadiran, address, kehadiran }]);
 
-			const result = await response.json();
-			responseMessage = result.message;
-			isSubmitted = true;
-			nameKehadiran = '';
-			address = '';
-			kehadiran = '';
-			dispatch('submit', { message: result.message });
+			if (error) {
+				responseMessage = 'Error saat mengirim formulir: ' + error.message;
+			} else {
+				responseMessage = 'RSVP berhasil dikirim!';
+				isSubmitted = true;
+				nameKehadiran = '';
+				address = '';
+				kehadiran = '';
+				dispatch('submit', { message: responseMessage });
 
-			// Reset confirmation message after 3 seconds
-			setTimeout(() => {
-				isSubmitted = false;
-				responseMessage = '';
-			}, 3000);
+				setTimeout(() => {
+					isSubmitted = false;
+					responseMessage = '';
+				}, 3000);
+			}
 		} catch (error) {
 			responseMessage = 'Error saat mengirim formulir: ' + error.message;
 			dispatch('submit', { message: responseMessage });

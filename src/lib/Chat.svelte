@@ -2,13 +2,12 @@
 	export let comment;
 
 	function getDaysAgo(createdAt) {
-		const now = new Date('2025-07-23T12:10:00+07:00'); // Tanggal dan waktu saat ini (12:10 WIB)
+		const now = new Date('2025-07-23T12:10:00+07:00');
 		const createdDate = new Date(createdAt);
 		const diffTime = Math.abs(now - createdDate);
 		const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-		// Format waktu dari createdAt dalam WIB (UTC+7)
-		const createdDateWIB = new Date(createdDate.getTime() + 7 * 60 * 60 * 1000); // Konversi ke WIB
+		const createdDateWIB = new Date(createdDate.getTime() + 7 * 60 * 60 * 1000);
 		const hours = createdDateWIB.getUTCHours().toString().padStart(2, '0');
 		const minutes = createdDateWIB.getUTCMinutes().toString().padStart(2, '0');
 		const timeString = `${hours}:${minutes} WIB`;
@@ -17,17 +16,13 @@
 	}
 
 	function getRandomColor() {
-		// Menggunakan rentang warna yang lebih gelap (0-127 untuk RGB)
-		const r = Math.floor(Math.random() * 128); // Merah: 0-127
-		const g = Math.floor(Math.random() * 128); // Hijau: 0-127
-		const b = Math.floor(Math.random() * 128); // Biru: 0-127
-
-		// Konversi ke format hex
+		const r = Math.floor(Math.random() * 128);
+		const g = Math.floor(Math.random() * 128);
+		const b = Math.floor(Math.random() * 128);
 		const toHex = (num) => num.toString(16).padStart(2, '0');
 		return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 	}
 
-	// Warna acak untuk setiap render (dapat disesuaikan untuk konsistensi per nama jika diperlukan)
 	$: profileColor = getRandomColor();
 	$: firstLetter = comment.name.charAt(0).toUpperCase();
 	$: daysAgo = getDaysAgo(comment.created_at);
@@ -79,7 +74,7 @@
 	.name {
 		font-size: 14px;
 		margin: 0;
-		color: #3b5998; /* Warna mirip dengan hijau di gambar */
+		color: #3b5998;
 		font-weight: bold;
 	}
 

@@ -2,18 +2,21 @@
 	import { onMount } from 'svelte';
 	import RSVPForm from './RSVPForm.svelte';
 	import WishesForm from './WishesForm.svelte';
-	import NextComment from './NextComment.svelte';
+	import { supabase } from './supabaseClient';
 
 	let comments = [];
 	let responseMessage = '';
 
 	async function fetchComments() {
 		try {
-			const response = await fetch('http://localhost:3000/comments');
-			if (response.ok) {
-				comments = await response.json();
-			} else {
+			const { data, error } = await supabase
+				.from('wishes')
+				.select('*')
+				.order('created_at', { ascending: false });
+			if (error) {
 				responseMessage = 'Error saat mengambil komentar dari database';
+			} else {
+				comments = data;
 			}
 		} catch (error) {
 			responseMessage = 'Error saat mengambil komentar: ' + error.message;

@@ -9,10 +9,6 @@
 	import WeddingGift from '../lib/WeddingGift.svelte';
 	import FooterPage from '../lib/FooterPage.svelte';
 
-	// import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-
-	// injectSpeedInsights();
-
 	let open = false;
 
 	function putarMusik() {
