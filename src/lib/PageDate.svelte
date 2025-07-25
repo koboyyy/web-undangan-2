@@ -1,21 +1,48 @@
+<script>
+  // Tentukan tanggal dan waktu acara (contoh: 31 Desember 2025, 23:59:59)
+  const eventDate = new Date("Nov 31, 2025 23:59:59").getTime();
+  let days = $state(0);
+  let hours = $state(0);
+  let minutes = $state(0);
+  let seconds = $state(0);
+
+  // Update countdown setiap 1 detik
+  const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      // Hitung hari, jam, menit, detik
+      days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Jika countdown selesai
+      if (distance < 0) {
+          clearInterval(countdown);
+          days, hours, minutes, seconds = 0;
+      }
+  }, 1000);
+</script>
+
 <section>
   <div class="content">
       <div class="title">Save The Date</div>
-      <div class="date">
+      <div id="countdown">
         <div>
-          <p>0</p>
-          <p>Hari</p>
+          <p>{days}</p>
+          <p>days</p>
         </div>
         <div>
-          <p>0</p>
+          <p>{hours}</p>
           <p>Jam</p>
         </div>
         <div>
-          <p>0</p>
+          <p>{minutes}</p>
           <p>Menit</p>
         </div>
         <div>
-          <p>0</p>
+          <p>{seconds}</p>
           <p>Detik</p>
         </div>
       </div>
@@ -42,12 +69,12 @@
     color: #4E4E4E;
   }
 
-  .date {
+  #countdown {
     display: flex;
     gap: 6px;
   }
 
-  .date div {
+  #countdown div {
     font-family: "Nunito-Regular", serif;
     letter-spacing: 1px;
     font-size: 0.7em;

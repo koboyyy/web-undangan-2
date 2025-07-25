@@ -1,12 +1,21 @@
 <script>
 	import { fade } from 'svelte/transition';
+  import { onMount } from 'svelte';
 
 	// Properti yang diterima dari komponen induk.
 	// Digunakan untuk menangani aksi membuka undangan.
 	export let openInvitation;
 
 	// Variabel untuk nama tamu, bisa diubah sesuai kebutuhan atau dijadikan prop.
-	let guestName = 'Guest';
+	let guestName = 'Tamu Undangan';
+
+  onMount(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('nama');
+    if (name) {
+      guestName = name.replace(/\+/g, ' '); // Ganti '+' dengan spasi
+    }
+  });
 </script>
 
 <section in:fade={{ duration: 1000 }} class="invitation-cover">

@@ -5,15 +5,9 @@
 			<h1 class="title">Our Gallery</h1>
 			<div class="foto-wrapper">
 				<img src="/images/foto4.webp" alt="" loading="lazy"/>
-				<img src="/images/foto1.webp" alt="" loading="lazy"/>
-				<img src="/images/foto3.webp" alt="" loading="lazy"/>
-				<img src="/images/foto2.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper">
 				<img src="/images/foto2.webp" alt="" loading="lazy"/>
-				<img src="/images/foto3.webp" alt="" loading="lazy"/>
-				<img src="/images/foto4.webp" alt="" loading="lazy"/>
-				<img src="/images/foto1.webp" alt="" loading="lazy"/>
 			</div>
 			<p>"Every Love Story Is Beautiful, But Ours Is My Favorite"</p>
 		</div>
@@ -22,21 +16,12 @@
 		<div class="frame-2">
 			<div class="foto-wrapper left">
 				<img src="/images/foto1.webp" alt="" loading="lazy"/>
-				<img src="/images/foto2.webp" alt="" loading="lazy"/>
-				<img src="/images/foto4.webp" alt="" loading="lazy"/>
-				<img src="/images/foto3.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper left">
 				<img src="/images/foto2.webp" alt="" loading="lazy"/>
-        <img src="/images/foto1.webp" alt="" loading="lazy"/>
-				<img src="/images/foto3.webp" alt="" loading="lazy"/>
-				<img src="/images/foto4.webp" alt="" loading="lazy"/>
 			</div>
 			<div class="foto-wrapper left">
 				<img src="/images/foto1.webp" alt="" loading="lazy"/>
-				<img src="/images/foto3.webp" alt="" loading="lazy"/>
-				<img src="/images/foto2.webp" alt="" loading="lazy"/>
-				<img src="/images/foto4.webp" alt="" loading="lazy"/>
 			</div>
 		</div>
 	</div>
@@ -137,26 +122,6 @@
 		object-fit: cover;
 	}
 
-	/* .foto-wrapper img {
-		animation: foto-slide 30s infinite;
-	}
-
-	.foto-wrapper:nth-child(2) img {
-		animation: foto-slide 30s 1s infinite;
-	}
-
-	.foto-wrapper.left:nth-child(1) img {
-		animation: foto-slide 30s 2s infinite;
-	}
-
-	.foto-wrapper.left:nth-child(2) img {
-		animation: foto-slide 30s 2.3s infinite;
-	}
-
-	.foto-wrapper.left:nth-child(3) img {
-		animation: foto-slide 30s 2.9s infinite;
-	} */
-
 	@keyframes up {
 		to {
 			transform: translateY(0);
@@ -169,40 +134,4 @@
 			transform: translateX(0);
 		}
 	}
-
-	/* @keyframes foto-slide {
-		0% {
-			transform: translateX(0);
-		}
-		15% {
-			transform: translateX(0);
-		}
-		20% {
-			transform: translateX(-100%);
-		}
-		35% {
-			transform: translateX(-100%);
-		}
-		40% {
-			transform: translateX(-200%);
-		}
-		55% {
-			transform: translateX(-200%);
-		}
-		60% {
-			transform: translateX(-300%);
-		}
-		75% {
-			transform: translateX(-300%);
-		}
-		80% {
-			transform: translateX(-200%);
-		}
-		95% {
-			transform: translateX(-200%);
-		}
-		100% {
-			transform: translateX(0);
-		}
-	} */
 </style>

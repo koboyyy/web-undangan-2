@@ -98,8 +98,8 @@
 
 	.wedding-banner::before {
 		content: '';
-		background: url('/images/taman.jpg') no-repeat center/cover;
-		animation: inset 5s ease forwards;
+		background: url('/images/taman.webp') no-repeat center/cover;
+		animation: inset 8s ease-out forwards;
 		position: absolute;
 		left: 0;
 		right: 0;

@@ -9,31 +9,31 @@
 	let isVisible2 = false;
 
 	onMount(() => {
-		// Initialize Swiper sliders
-		new Swiper('.swiper-left', {
-			modules: [Autoplay],
-			autoplay: {
-				delay: 5000,
-				disableOnInteraction: false,
-			},
-			loop: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-		});
+		// new Swiper('.swiper-left', {
+		// 	modules: [Autoplay],
+		// 	autoplay: {
+		// 		delay: 5000, // Lebih santai
+		// 		disableOnInteraction: false,
+		// 	},
+		// 	speed: 1500, // Transisi geser 1 detik
+		// 	loop: true,
+		// 	slidesPerView: 1,
+		// 	spaceBetween: 0,
+		// });
 
-		new Swiper('.swiper-right', {
-			modules: [Autoplay],
-			autoplay: {
-				delay: 5000,
-				disableOnInteraction: false,
-				reverseDirection: true,
-			},
-			loop: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-		});
+		// new Swiper('.swiper-right', {
+		// 	modules: [Autoplay],
+		// 	autoplay: {
+		// 		delay: 7000, // Lebih santai
+		// 		disableOnInteraction: false,
+		// 		reverseDirection: true,
+		// 	},
+		// 	speed: 1000, // Transisi geser 1 detik
+		// 	loop: true,
+		// 	slidesPerView: 1,
+		// 	spaceBetween: 0,
+		// });
 
-		// Intersection Observer for info sections
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
@@ -67,17 +67,17 @@
 			<div class="swiper swiper-left">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<img src="/images/foto1.webp" alt="" />
+						<img src="/images/foto1.webp" alt="" loading="lazy"/>
+					</div>
+					<!-- <div class="swiper-slide">
+						<img src="/images/foto2.webp" alt="" loading="lazy"/>
 					</div>
 					<div class="swiper-slide">
-						<img src="/images/foto2.webp" alt="" />
+						<img src="/images/foto3.webp" alt="" loading="lazy"/>
 					</div>
 					<div class="swiper-slide">
-						<img src="/images/foto3.webp" alt="" />
-					</div>
-					<div class="swiper-slide">
-						<img src="/images/foto4.webp" alt="" />
-					</div>
+						<img src="/images/foto4.webp" alt="" loading="lazy"/>
+					</div> -->
 				</div>
 			</div>
 			<div class="frame-inset"></div>
@@ -93,17 +93,17 @@
 			<div class="swiper swiper-right">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide">
-						<img src="/images/foto4.webp" alt="" />
+						<img src="/images/foto4.webp" alt="" loading="lazy"/>
+					</div>
+					<!-- <div class="swiper-slide">
+						<img src="/images/foto2.webp" alt="" loading="lazy"/>
 					</div>
 					<div class="swiper-slide">
-						<img src="/images/foto2.webp" alt="" />
+						<img src="/images/foto3.webp" alt="" loading="lazy"/>
 					</div>
 					<div class="swiper-slide">
-						<img src="/images/foto3.webp" alt="" />
-					</div>
-					<div class="swiper-slide">
-						<img src="/images/foto1.webp" alt="" />
-					</div>
+						<img src="/images/foto1.webp" alt="" loading="lazy"/>
+					</div> -->
 				</div>
 			</div>
 			<div class="frame-inset"></div>
@@ -165,7 +165,7 @@
 		width: max-content;
 		bottom: 33%;
 		writing-mode: sideways-lr;
-		font-family: 'Creattion', sans-serif;
+		font-family: 'CreattionDemo', sans-serif;
 		z-index: 3;
 	}
 
@@ -174,14 +174,14 @@
 	}
 
 	.frame-right::after {
-		right: 97%;
+		right: 100%;
 	}
 
 	.frame-inset {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		border: solid white 3px;
+		border: solid rgb(255, 255, 255) 3px;
 		width: 90%;
 		height: 90%;
 		transform: translate(-50%, -50%);
@@ -211,9 +211,8 @@
 		width: 100%;
 		min-width: 270px;
 		opacity: 0;
-		transition:
-			transform 1s ease,
-			opacity 1s ease;
+		transition: transform 1.2s ease-in-out, opacity 1.2s ease-in-out;
+		will-change: transform, opacity; /* Optimasi performa */
 	}
 
 	.info h1 {
@@ -246,14 +245,15 @@
 		opacity: 1;
 	}
 
-	.slide-in {
-		opacity: 1;
-	}
-
 	.swiper {
 		width: 100%;
 		height: 100%;
 		z-index: 1;
+	}
+
+	.swiper-slide {
+		transition-timing-function: ease-in-out; /* Transisi geser lebih halus */
+		will-change: transform; /* Optimasi performa */
 	}
 
 	.swiper-slide img {
